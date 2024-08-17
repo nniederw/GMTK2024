@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     private static GameManager ActiveGameManager;
     private void Start()
     {
+        Time.timeScale = 1.0f;
         if (GameOverOverlay == null) throw new Exception($"{nameof(GameOverOverlay)} is null on {nameof(GameManager)}");
         ActiveGameManager = this;
         GameOverOverlay.SetActive(false);
