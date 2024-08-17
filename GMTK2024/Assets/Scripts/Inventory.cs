@@ -37,6 +37,10 @@ public class Inventory : MonoBehaviour, IDamagable
         {
             Scales -= damage;
             CheckHealth();
+            for (int i = 0; i < damage; i++)
+            {
+                ScalesSpawnerManager.RespawnScale();
+            }
             RunningImmunity = IFrameDuration;
         }
     }
