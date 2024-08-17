@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     private void ReduceTime()
     {
         Time.timeScale = 0.5f;
-
     }
     private void StopTime()
     {
