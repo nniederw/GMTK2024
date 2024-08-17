@@ -44,7 +44,7 @@ public class Inventory : MonoBehaviour, IDamagable
     {
         if (Scales < 0)
         {
-            //GameManager.GameOver();
+            GameManager.GameOver();
         }
     }
 }
