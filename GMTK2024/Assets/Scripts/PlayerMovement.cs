@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,13 +13,24 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float DashCooldownS = 1f;
     private float RunningDashCooldown = 0f;
     private Rigidbody2D Rigidbody;
+    private event Action OnPlayerDash;
+    private bool Freezed = false;
+    public void ListenToDash(Action a) => OnPlayerDash += a;
+    public void Freeze()
+    {
+        Freezed = true;
+        Rigidbody.velocity = Vector2.zero;
+    }
+
+    public void Unfreeze() => Freezed = false;
+
     private void Start()
     {
         Rigidbody = GetComponent<Rigidbody2D>();
     }
-    void Update()
+    private void Update()
     {
-        if (Input.GetButtonDown(DashButton) && RunningDashCooldown == 0)
+        if (!Freezed && Input.GetButtonDown(DashButton) && RunningDashCooldown == 0)
         {
             Dash();
         }
@@ -28,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         var dir = MovementVector().normalized;
         Rigidbody.AddForce(dir * DashForce, ForceMode2D.Impulse);
         RunningDashCooldown = DashCooldownS;
-
+        OnPlayerDash?.Invoke();
     }
     private Vector2 MovementVector()
     {
@@ -43,14 +55,17 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Vector2 movement = MovementVector();
-        var angle = Vector2.Angle(-1 * Rigidbody.velocity, movement);
-        if (angle < 30)
+        if (!Freezed)
         {
-            movement *= 2;
+            Vector2 movement = MovementVector();
+            var angle = Vector2.Angle(-1 * Rigidbody.velocity, movement);
+            if (angle < 30)
+            {
+                movement *= 2;
+            }
+            Rigidbody.AddForce(movement * MovementSpeed);
+            RunningDashCooldown -= Time.fixedDeltaTime;
+            RunningDashCooldown = Mathf.Max(0, RunningDashCooldown);
         }
-        Rigidbody.AddForce(movement * MovementSpeed);
-        RunningDashCooldown -= Time.fixedDeltaTime;
-        RunningDashCooldown = Mathf.Max(0, RunningDashCooldown);
     }
 }
