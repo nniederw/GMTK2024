@@ -4,6 +4,10 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject GameOverOverlay;
     private static GameManager ActiveGameManager;
+    private void Awake()
+    {
+        ScalesSpawnerManager.Reset();
+    }
     private void Start()
     {
         Time.timeScale = 1.0f;

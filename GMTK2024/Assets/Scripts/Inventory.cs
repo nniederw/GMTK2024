@@ -1,26 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
-
 public class Inventory : MonoBehaviour, IDamagable
 {
     public int Scales { get; private set; }
     [SerializeField] private float IFrameDuration = 1.0f;
     private float RunningImmunity = 0f;
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
+    private event Action OnScalesChange;
+    private uint ScalesToRespawn = 0;
+    private float SecondsForScaleRespawn = 5f;
+    private float RespawnTimer = 0f;
+    public void ListenToScalesChange(Action action) { OnScalesChange += action; }
     private void FixedUpdate()
     {
         RunningImmunity -= Time.fixedDeltaTime;
         RunningImmunity = Mathf.Max(0f, RunningImmunity);
+        if (RespawnTimer <= 0f)
+        {
+            if (ScalesToRespawn > 0 && ScalesSpawnerManager.HasSpawnableSpot())
+            {
+                ScalesSpawnerManager.RespawnScale();
+                ScalesToRespawn -= 1;
+            }
+            RespawnTimer += SecondsForScaleRespawn;
+        }
+        RespawnTimer -= Time.fixedDeltaTime;
+    }
+    private void ScalesChange()
+    {
+        OnScalesChange?.Invoke();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -29,18 +36,18 @@ public class Inventory : MonoBehaviour, IDamagable
         {
             p.PickUp();
             Scales++;
+            ScalesChange();
         }
     }
-    public void RecieveDamage(int damage)
+    public void RecieveDamage(uint damage)
     {
         if (RunningImmunity <= 0f)
         {
-            Scales -= damage;
+            Scales -= (int)damage;
+            ScalesChange();
             CheckHealth();
-            for (int i = 0; i < damage; i++)
-            {
-                ScalesSpawnerManager.RespawnScale();
-            }
+            ScalesToRespawn += damage;
+
             RunningImmunity = IFrameDuration;
         }
     }

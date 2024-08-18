@@ -8,6 +8,7 @@ public static class ScalesSpawnerManager
     {
         ScalesSpawners.Add(spawner);
     }
+    public static bool HasSpawnableSpot() => ScalesSpawners.Where(i => !i.IsActive()).Any();
     private static ScalesSpawner GetRandomDestroyedScales()
     {
         var ss = ScalesSpawners.Where(i => !i.IsActive()).ToArray();
@@ -16,4 +17,8 @@ public static class ScalesSpawnerManager
         return ss[rnd.Next(0, ss.Length)];
     }
     public static void RespawnScale() => GetRandomDestroyedScales().Spawn();
+    public static void Reset()
+    {
+        ScalesSpawners.Clear();
+    }
 }

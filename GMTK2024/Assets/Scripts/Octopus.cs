@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using TMPro;
 
@@ -11,24 +12,43 @@ public class Octopus : MonoBehaviour
     private Vector2 DefaultScale;
     private bool PlayerFreezed = false;
     private PlayerMovement PlayerMovement;
+    private List<WordPuzzle> UnsolvedWordPuzzels = new List<WordPuzzle>();
+    [SerializeField] private TMP_InputField InputField;
+    private WordPuzzle ActivePuzzle;
     private void Start()
     {
         DefaultScale = transform.localScale;
+        if (InputField == null) throw new Exception($"{nameof(InputField)} was null in {nameof(Octopus)}");
+        if (TextBouble == null) throw new Exception($"{nameof(TextBouble)} was null in {nameof(Octopus)}");
     }
     private void Update()
     {
-        if (PlayerFreezed && Input.GetKeyDown(KeyCode.Escape))
+        if (PlayerFreezed)
         {
-            PlayerFreezed = false;
-            PlayerMovement.Unfreeze();
-            DisableQuestion();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                PlayerFreezed = false;
+                PlayerMovement.Unfreeze();
+                DisableQuestion();
+            }
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                string answer = InputField.text;
+                InputField.text = "";
+            }
         }
+    }
+    private bool IsAnswerCorrect(string answer, string solution)
+    {
+        answer = answer.ToLower();
+        solution = solution.ToLower();
+        return solution.Contains(answer);
     }
     private void StartQuestion()
     {
+
         TextBouble.gameObject.SetActive(true);
         OctopusUICanvas.gameObject.SetActive(true);
-        //TextBoubleImage.SetActive(true);
     }
     private void DisableQuestion()
     {
@@ -38,7 +58,7 @@ public class Octopus : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var p = collision.gameObject.GetComponent<PlayerMovement>();
-        if(p != null)
+        if (p != null)
         {
             PlayerMovement = p;
             p.Freeze();
@@ -55,4 +75,9 @@ public class Octopus : MonoBehaviour
             transform.localScale = DefaultScale;
         }
     }
+}
+public struct WordPuzzle
+{
+    public string Question;
+    public string Answer;
 }
