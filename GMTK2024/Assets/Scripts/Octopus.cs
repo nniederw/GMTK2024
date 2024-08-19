@@ -45,6 +45,13 @@ public class Octopus : MonoBehaviour
         if (WithoutScale == null) throw new Exception($"{nameof(WithoutScale)} was null in {nameof(Octopus)}");
         if (SpriteRenderer == null) throw new Exception($"{nameof(SpriteRenderer)} was null in {nameof(Octopus)}");
     }
+    private void LogSolutions()
+    {
+        foreach (var puz in UnsolvedWordPuzzels)
+        {
+            Debug.Log(puz.Answer);
+        }
+    }
     private void Update()
     {
         if (PlayerFreezed)
@@ -86,7 +93,7 @@ public class Octopus : MonoBehaviour
             Inventory.AddScale();
             Finished = true;
             SpriteRenderer.sprite = WithoutScale;
-            s = "Fine, you've solved enough of my puzzles. Have a scale.";
+            s = "Hmpf, you just got lucky. Fine, you've solved enough of my puzzles. Have a scale.";
         }
         else
         {
