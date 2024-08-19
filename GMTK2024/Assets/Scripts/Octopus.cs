@@ -21,15 +21,24 @@ public class Octopus : MonoBehaviour
     [SerializeField] private TMP_InputField InputField;
     private WordPuzzle? ActivePuzzle = null;
     private int CorrectlySolvedPuzzels = 0;
-    private int NeededSolvedPuzzels = 2;
+    private int NeededSolvedPuzzels = 3;
     private bool Finished = false;
     private void Start()
     {
         Finished = false;
         SpriteRenderer.sprite = WithScale;
         DefaultScale = transform.localScale;
-        UnsolvedWordPuzzels.Add(new WordPuzzle("What is cold, blue and liquid", "water"));
-        UnsolvedWordPuzzels.Add(new WordPuzzle("What is bright, yellow and ever burning", "sun"));
+        UnsolvedWordPuzzels.Add(new WordPuzzle("The person who makes me, does not want me\r\nThe person who buys me, does not need me\r\nAnd the person who needs me, does not know it\r\nWhat am I?", "coffin"));
+        UnsolvedWordPuzzels.Add(new WordPuzzle("I am churches without gods,\r\nDry rivers, flat mountains\r\nAnd lifeless cities.\r\nWhat am I?", "map"));
+        UnsolvedWordPuzzels.Add(new WordPuzzle("In the morning I walk on four legs\r\nDuring the day I walk on two\r\nAnd in the evening I walk on three legs\r\nWhat am I?", "man"));
+        UnsolvedWordPuzzels.Add(new WordPuzzle("Alive without breath,\r\nAs cold as death;\r\nNever thirsty, ever drinking,\r\nAll in mail never clinking.\r\nWhat am I?", "fish"));
+        UnsolvedWordPuzzels.Add(new WordPuzzle("I can run, but never walk\r\nI have a mouth, but never talk\r\nI have a head, but never weep\r\ni have a bed, but never sleep\r\nWhat am I?", "river"));
+        UnsolvedWordPuzzels.Add(new WordPuzzle("I can bring back the dead,\r\nmake you cry,make you laugh, make you young\r\nI am born in an instant, yet last a lifetime.\r\nWhat am I?", "memory"));
+        UnsolvedWordPuzzels.Add(new WordPuzzle("Rich people need me,\r\nPoor people have me,\r\nAnd if you eat me, you will die\r\nWhat am I?", "nothing"));
+        UnsolvedWordPuzzels.Add(new WordPuzzle("I am tall when I am young,\r\nyet when I am old, I grew shorter,\r\nas my life burned away\r\nWhat am I?", "candle"));
+        UnsolvedWordPuzzels.Add(new WordPuzzle("I am always running, but never move\r\nI have no mouth, but a powerful roar\r\nWhat am I?", "waterfall"));
+        UnsolvedWordPuzzels.Add(new WordPuzzle("I am as small as an ant, as big as a whale.\r\nI am as slow as a snail, or as fast as lightning.\r\nI will dance to the music, I can not hear.\r\nWhat am I?", "shadow"));
+        //UnsolvedWordPuzzels.Add(new WordPuzzle("WhatamI", "map"));
         if (InputField == null) throw new Exception($"{nameof(InputField)} was null in {nameof(Octopus)}");
         if (TextBouble == null) throw new Exception($"{nameof(TextBouble)} was null in {nameof(Octopus)}");
         if (WithScale == null) throw new Exception($"{nameof(WithScale)} was null in {nameof(Octopus)}");
@@ -90,7 +99,7 @@ public class Octopus : MonoBehaviour
     {
         answer = answer.ToLower();
         solution = solution.ToLower();
-        return answer.Contains(answer);
+        return solution.Contains(answer);
     }
     private void StartQuestion()
     {
