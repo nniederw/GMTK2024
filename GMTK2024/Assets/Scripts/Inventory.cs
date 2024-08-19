@@ -39,6 +39,11 @@ public class Inventory : MonoBehaviour, IDamagable
             ScalesChange();
         }
     }
+    public void AddScale()
+    {
+        Scales++;
+        ScalesChange();
+    }
     public void RecieveDamage(uint damage)
     {
         if (RunningImmunity <= 0f)
