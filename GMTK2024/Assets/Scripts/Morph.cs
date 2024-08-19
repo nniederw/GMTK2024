@@ -67,4 +67,10 @@ public class Morph : MonoBehaviour
         //AccelerationRunningAverage = AccelerationRunningAverage * 0.15f + Acceleration() * 0.85f;
         //LastVelocity = Rigidbody.velocity;
     }
+
+    public bool CanFly()
+    {
+        //TODO implement for Dragon
+        return false;
+    }
 }
