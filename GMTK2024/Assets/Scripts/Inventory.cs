@@ -4,12 +4,20 @@ public class Inventory : MonoBehaviour, IDamagable
 {
     public int Scales { get; private set; }
     [SerializeField] private float IFrameDuration = 1.0f;
+    [SerializeField] private Camera Camera;
     private float RunningImmunity = 0f;
     private event Action OnScalesChange;
+    private event Action OnMorphToDragon;
     private uint ScalesToRespawn = 0;
     private float SecondsForScaleRespawn = 5f;
     private float RespawnTimer = 0f;
+    public bool MorphedToDragon {get; private set;} = false;
     public void ListenToScalesChange(Action action) { OnScalesChange += action; }
+    public void ListenToMorphToDragon(Action action) { OnMorphToDragon += action; }
+    private void Start()
+    {
+        if (Camera == null) throw new Exception($"{nameof(Camera)} was null in {nameof(Inventory)}");
+    }
     private void FixedUpdate()
     {
         RunningImmunity -= Time.fixedDeltaTime;
@@ -24,6 +32,12 @@ public class Inventory : MonoBehaviour, IDamagable
             RespawnTimer += SecondsForScaleRespawn;
         }
         RespawnTimer -= Time.fixedDeltaTime;
+        if (!MorphedToDragon && Scales > 5)
+        {
+            OnMorphToDragon?.Invoke();
+            Camera.orthographicSize += 5;
+            MorphedToDragon = true;
+        }
     }
     private void ScalesChange()
     {

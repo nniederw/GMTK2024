@@ -1,25 +1,43 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+[RequireComponent(typeof(SpriteRenderer))]
 public class DragonBodyPart : MonoBehaviour
 {
     [SerializeField] private float Length = 15f;
-    private int Resolution = 100;
+    [SerializeField] private int Resolution = 100;
+    [SerializeField] private Sprite Head;
+    private SpriteRenderer SpriteRenderer;
     private Vector2[] Curve;
+    private float[] Distances;
+    private float MaxDistance;
     private Vector2 SmoothedPosition;
     private int StartIndex = 0;
     private float LastCurveDistance;
     private void Start()
     {
+        if (Head == null) throw new Exception($"{nameof(Head)} was null in {nameof(DragonBodyPart)}");
+        SpriteRenderer = GetComponent<SpriteRenderer>();
         Curve = new Vector2[Resolution];
-        Curve[0] = transform.position;
-        Curve[1] = Curve[0] + Vector2.right * Length;
-        for (int i = 2; i < Resolution; i++)
+        Distances = new float[Resolution];
+        var v = Vector2.right * Length + (Vector2)transform.position;
+        for (int i = 0; i < Resolution; i++)
         {
-            Curve[i] = Curve[1];
+            Curve[i] = (((float)i) / Resolution) * v;
         }
         LastCurveDistance = CalcCurveDist();
+        var inv = GetComponent<Inventory>();
+        if (inv != null)
+        {
+            enabled = false;
+            inv.ListenToMorphToDragon(OnMorphToDragon);
+        }
+    }
+    private void OnMorphToDragon()
+    {
+        enabled = true;
+        SpriteRenderer.sprite = Head;
+        SpriteRenderer.flipX= false;
     }
     private float CalcCurveDist()
     {
@@ -31,9 +49,11 @@ public class DragonBodyPart : MonoBehaviour
         {
             var next = Curve[index];
             distance += (next - lastPos).magnitude;
+            Distances[index] = (next - lastPos).magnitude;
             index = PositiveModulo(index + 1, Resolution);
             lastPos = next;
         }
+        MaxDistance = Distances.Max();
         return distance;
     }
     private void FixedUpdate()
@@ -64,13 +84,13 @@ public class DragonBodyPart : MonoBehaviour
         Vector2 resA = new Vector2();
         Vector2 resB = new Vector2();
         float resRestDist = 0f;
-        if (distance == 0f) return (Curve[StartIndex], Curve[StartIndex], 0f);
         float runningDist = 0f;
         int index = StartIndex;
-        var lastPos = Curve[index];
-        index = PositiveModulo(index + 1, Resolution);
+        //var lastPos = Curve[index];
+        //index = PositiveModulo(index + 1, Resolution);
+        Vector2 lastPos = transform.position;
         bool found = false;
-        for (int i = 0; i < Resolution - 1; i++)
+        for (int i = 0; i < Resolution; i++)
         {
             var next = Curve[index];
             index = PositiveModulo(index + 1, Resolution);

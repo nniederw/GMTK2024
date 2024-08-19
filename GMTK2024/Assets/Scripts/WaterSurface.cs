@@ -5,10 +5,10 @@ public class WaterSurface : MonoBehaviour
     [SerializeField] private float GravityScale = 3.0f;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var m = collision.gameObject.GetComponent<Morph>();
-        if(m != null && !m.CanFly())
+        var inv = collision.gameObject.GetComponent<Inventory>();
+        if(inv != null && !inv.MorphedToDragon)
         {
-            var rig = m.GetComponent<Rigidbody2D>();
+            var rig = inv.GetComponent<Rigidbody2D>();
             if(rig !=null)
             {
                 rig.gravityScale = GravityScale;
@@ -17,10 +17,10 @@ public class WaterSurface : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        var m = collision.gameObject.GetComponent<Morph>();
-        if (m != null)
+        var inv = collision.gameObject.GetComponent<Inventory>();
+        if (inv != null)
         {
-            var rig = m.GetComponent<Rigidbody2D>();
+            var rig = inv.GetComponent<Rigidbody2D>();
             if (rig != null)
             {
                 rig.gravityScale = 0f;

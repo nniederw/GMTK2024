@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D),typeof(Inventory))]
 public class DragonMovement : MonoBehaviour
 {
     private Rigidbody2D Rigidbody;
+    private Inventory Inventory;
     private readonly Vector2 SpriteAngle = new Vector2(-0.9f, 0.44f) * -1;
     private void Start()
     {
         Rigidbody = GetComponent<Rigidbody2D>();
-
+        Inventory = GetComponent<Inventory>();
+        Inventory.ListenToMorphToDragon(OnMorphToDragon);
+        enabled = false;
+    }
+    private void OnMorphToDragon()
+    {
+        enabled = true;
     }
     private void Update()
     {

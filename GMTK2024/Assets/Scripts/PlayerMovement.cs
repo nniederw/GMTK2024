@@ -27,6 +27,18 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         Rigidbody = GetComponent<Rigidbody2D>();
+        var inv = GetComponent<Inventory>();
+        if (inv != null)
+        {
+
+        }
+
+    }
+    private void OnMorphToDragon()
+    {
+        MovementSpeed += 3f;
+        DashForce += 3f;
+        DashCooldownS *= 0.8f;
     }
     private void Update()
     {

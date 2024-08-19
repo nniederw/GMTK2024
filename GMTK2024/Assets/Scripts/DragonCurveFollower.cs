@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 public class DragonCurveFollower : MonoBehaviour
 {
@@ -16,11 +14,17 @@ public class DragonCurveFollower : MonoBehaviour
         var v1 = curvePoint.a;
         var v2 = curvePoint.b;
         var normDist = curvePoint.restDistance / (v1 - v2).magnitude;
-        Target = Vector2.Lerp(v1, v2, normDist);
-        //transform.position =  transform.position*0.3f + (Vector3)target*0.7f;
+        Target = Vector2.Lerp(v2, v1, normDist);//TODO check if switching was right
+        AllignWithLine(v2 - v1);
     }
     private void Update()
     {
         transform.position = Vector3.Lerp(transform.position, Target, Time.deltaTime * 10f);
+
+    }
+    private void AllignWithLine(Vector2 direction)
+    {
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }
