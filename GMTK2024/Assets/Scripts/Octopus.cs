@@ -99,7 +99,7 @@ public class Octopus : MonoBehaviour
     {
         answer = answer.ToLower();
         solution = solution.ToLower();
-        return solution.Contains(answer);
+        return answer.Contains(solution);
     }
     private void StartQuestion()
     {
