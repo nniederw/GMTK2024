@@ -14,6 +14,14 @@ public class WaterSurface : MonoBehaviour
                 rig.gravityScale = GravityScale;
             }
         }
+        else
+        {
+            var ab = collision.gameObject.GetComponent<AsteroidBody>();
+            if(ab != null)
+            {
+                ab.OnHittingWaterSurface();
+            }
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

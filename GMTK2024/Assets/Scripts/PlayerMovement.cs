@@ -30,9 +30,8 @@ public class PlayerMovement : MonoBehaviour
         var inv = GetComponent<Inventory>();
         if (inv != null)
         {
-
+            inv.ListenToMorphToDragon(OnMorphToDragon);
         }
-
     }
     private void OnMorphToDragon()
     {
