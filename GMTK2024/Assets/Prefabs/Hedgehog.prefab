@@ -98,10 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7823f370048f348963fefb430edbbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PushForce: 4
+  PushForce: 8
   HappyHedgehog: {fileID: 21300000, guid: 8e34c148de1f5254fac418331c9de0ce, type: 3}
   AngryHedgehog: {fileID: 21300000, guid: 8c77f208e1341d844a316a8082d91a97, type: 3}
-  SpriteRenderer: {fileID: 0}
 --- !u!70 &2924005711107032502
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

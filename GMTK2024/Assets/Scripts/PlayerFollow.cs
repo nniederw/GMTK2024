@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class PlayerFollow : MonoBehaviour
@@ -8,7 +6,6 @@ public class PlayerFollow : MonoBehaviour
     [SerializeField] private float Hysterisis = 0.3f;
     [SerializeField] private float FollowSpeed = 1f;
     [SerializeField] private Vector3 CameraTarget;
-
     private Camera Camera;
     private void Start()
     {
@@ -19,18 +16,25 @@ public class PlayerFollow : MonoBehaviour
     private void LateUpdate()
     {
         var targetPos = Target.position;
-        var viewPos = Camera.WorldToViewportPoint(targetPos);
+        Vector2 viewPos = Camera.WorldToViewportPoint(targetPos);
         if (!InHysterisis(viewPos))
         {
-            //CameraTarget = new Vector3(targetPos.x, targetPos.y, transform.position.z);
-            var v = new Vector3(targetPos.x, targetPos.y, transform.position.z);
-            CameraTarget = Vector3.Lerp(v, CameraTarget,Time.deltaTime*FollowSpeed);
+            var differenceMiddle = new Vector2(0.5f, 0.5f) - viewPos;
+            var speed = differenceMiddle.magnitude - Hysterisis;
+            if (speed < 0f)
+            {
+                Debug.Log($"Found a potential bug?");
+            }
+            speed *= 4f;
+            speed = Mathf.Pow(speed,3);
+            speed *= FollowSpeed;
+            CameraTarget = new Vector3(targetPos.x, targetPos.y, transform.position.z);
+            transform.position = Vector3.Lerp(transform.position, CameraTarget, Time.deltaTime * speed);
         }
-        transform.position = Vector3.Slerp(transform.position, CameraTarget, Time.deltaTime * FollowSpeed);
     }
     private bool InHysterisis(Vector2 viewPos)
     {
         var differenceMiddle = new Vector2(0.5f, 0.5f) - viewPos;
-        return Mathf.Abs(differenceMiddle.x) < Hysterisis && Mathf.Abs(differenceMiddle.y) < Hysterisis;
+        return differenceMiddle.magnitude < Hysterisis;
     }
 }
