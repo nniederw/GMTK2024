@@ -5,7 +5,8 @@ public class DragonMovement : MonoBehaviour
 {
     private Rigidbody2D Rigidbody;
     private Inventory Inventory;
-    private readonly Vector2 SpriteAngle = new Vector2(-0.9f, 0.44f) * -1;
+    //private readonly Vector2 SpriteAngle = new Vector2(-0.9f, 0.44f) * -1;
+    private readonly Vector2 SpriteAngle = new Vector2(-1f, 0f) * -1;
     private void Start()
     {
         Rigidbody = GetComponent<Rigidbody2D>();

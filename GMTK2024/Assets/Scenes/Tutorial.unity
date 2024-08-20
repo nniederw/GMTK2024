@@ -2582,7 +2582,7 @@ MonoBehaviour:
   TextPromptImage: {fileID: 363292208}
   TutorialText: "Look to your right \u2014 a scale is waiting. Collect scales whenever
     you see them; they protect you from danger and might even help you reach the
-    sky. [Press Backspace to continue]"
+    sky. [Press LeftControl to continue]"
   Ending: 0
   FreezePlayer: 1
 --- !u!61 &507919350
@@ -4494,7 +4494,7 @@ MonoBehaviour:
   Text: {fileID: 1323160098}
   TextPromptImage: {fileID: 363292208}
   TutorialText: You are a carp. Use [WASD] or the arrow keys to move. Press [Space]
-    to dash. [Press Backspace to continue]
+    to dash. [Press LeftControl to continue]
   Ending: 0
   FreezePlayer: 1
 --- !u!61 &878716493
@@ -4760,7 +4760,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text: {fileID: 1323160098}
   TextPromptImage: {fileID: 363292208}
-  TutorialText: Keep swimming upward to reach the surface. [Press Backspace to continue]
+  TutorialText: Keep swimming upward to reach the surface. [Press LeftControl to
+    continue]
   Ending: 0
   FreezePlayer: 1
 --- !u!61 &903534565
@@ -7722,7 +7723,7 @@ MonoBehaviour:
   Text: {fileID: 1323160098}
   TextPromptImage: {fileID: 363292208}
   TutorialText: "Great job! That\u2019s it \u2014 now, the sky's the limit. [Press
-    Backspace to Play the game]"
+    LeftControl to Play the game]"
   Ending: 1
   FreezePlayer: 1
 --- !u!61 &1654213495
@@ -9071,7 +9072,7 @@ MonoBehaviour:
   Text: {fileID: 1323160098}
   TextPromptImage: {fileID: 363292208}
   TutorialText: Be carefull around sea hedgehogs. They can and will defend themself,
-    if you try to touch them. [Press Backspace to continue]
+    if you try to touch them. [Press LeftControl to continue]
   Ending: 0
   FreezePlayer: 1
 --- !u!61 &1864474357

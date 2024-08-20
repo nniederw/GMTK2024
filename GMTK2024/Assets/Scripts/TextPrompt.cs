@@ -19,7 +19,7 @@ public class TextPrompt : MonoBehaviour
     }
     private void Update()
     {
-        if (Active && Input.GetKeyDown(KeyCode.Backspace))
+        if (Active && Input.GetKeyDown(KeyCode.LeftControl))
         {
             PlayerMovement.Unfreeze();
             Active = false;
