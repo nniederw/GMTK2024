@@ -56,7 +56,7 @@ public class Octopus : MonoBehaviour
     {
         if (PlayerFreezed)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Backspace))
             {
                 PlayerFreezed = false;
                 PlayerMovement.Unfreeze();

@@ -35,7 +35,7 @@ public class Inventory : MonoBehaviour, IDamagable
         if (!MorphedToDragon && Scales > 5)
         {
             OnMorphToDragon?.Invoke();
-            Camera.orthographicSize += 5;
+            Camera.orthographicSize += 10;
             MorphedToDragon = true;
             var cc = GetComponent<CapsuleCollider2D>();
             if(cc != null)

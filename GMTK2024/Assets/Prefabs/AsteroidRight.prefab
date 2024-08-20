@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8553026693668903743}
   - component: {fileID: 4128678371192158453}
   - component: {fileID: 7720515963097440898}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AsteroidRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 77300635194828934}
   m_Father: {fileID: 1916385223150317698}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &860745079119986290
@@ -160,7 +161,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!1 &1009679379283381808
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1916385223150317698}
   - component: {fileID: 7524175904833594797}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AsteroidRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +192,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 77300635194828934}
   - {fileID: 781084982423624301}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 77300635194828934}
   - component: {fileID: 6172934582757750993}
   - component: {fileID: 3926411593402192859}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1916385223150317698}
+  m_Father: {fileID: 781084982423624301}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6172934582757750993
 SpriteRenderer:

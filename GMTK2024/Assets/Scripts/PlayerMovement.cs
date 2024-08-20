@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnMorphToDragon()
     {
         MovementSpeed += 3f;
-        DashForce += 3f;
+        //DashForce += 3f;
         DashCooldownS *= 0.8f;
     }
     private void Update()

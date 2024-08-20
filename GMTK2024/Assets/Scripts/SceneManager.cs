@@ -8,5 +8,11 @@ public class SceneManager :MonoBehaviour
     public static void LoadMainScene() => LoadScene(MainScene);
     public static void LoadTutorialScene() => LoadScene(TutorialScene);
     public static void LoadTitleScene() => LoadScene(TitleScene);
+    public static void QuitGame()
+    {
+        Debug.Log("Quitting the game");
+        Application.Quit();
+    }
+
     private static void LoadScene(string name) => UnityEngine.SceneManagement.SceneManager.LoadScene(name);
 }

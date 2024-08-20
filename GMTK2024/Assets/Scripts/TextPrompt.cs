@@ -2,27 +2,28 @@ using System;
 using TMPro;
 using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
-public class TutorialPrompt : MonoBehaviour
+public class TextPrompt : MonoBehaviour
 {
     [SerializeField] private TMP_Text Text;
-    [SerializeField] private GameObject TextPrompt;
+    [SerializeField] private GameObject TextPromptImage;
     [SerializeField] private string TutorialText;
     [SerializeField] private bool Ending = false;
+    [SerializeField] private bool FreezePlayer = true;
     private PlayerMovement PlayerMovement;
     private bool Active = false;
     private bool Triggered = false;
     private void Start()
     {
-        if (Text == null) throw new Exception($"{nameof(Text)} was null in {nameof(TutorialPrompt)}");
-        if (TextPrompt == null) throw new Exception($"{nameof(TextPrompt)} was null in {nameof(TutorialPrompt)}");
+        if (Text == null) throw new Exception($"{nameof(Text)} was null in {nameof(TextPrompt)}");
+        if (TextPromptImage == null) throw new Exception($"{nameof(TextPromptImage)} was null in {nameof(TextPrompt)}");
     }
     private void Update()
     {
-        if (Active && Input.GetKeyDown(KeyCode.Escape))
+        if (Active && Input.GetKeyDown(KeyCode.Backspace))
         {
             PlayerMovement.Unfreeze();
             Active = false;
-            TextPrompt.SetActive(false);
+            TextPromptImage.SetActive(false);
             if (Ending)
             {
                 SceneManager.LoadMainScene();
@@ -35,8 +36,11 @@ public class TutorialPrompt : MonoBehaviour
         if (!Triggered && pm != null)
         {
             PlayerMovement = pm;
-            PlayerMovement.Freeze();
-            TextPrompt.SetActive(true);
+            if (FreezePlayer)
+            {
+                PlayerMovement.Freeze();
+            }
+            TextPromptImage.SetActive(true);
             Text.text = TutorialText;
             Triggered = true;
             Active = true;
