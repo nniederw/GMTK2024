@@ -7,6 +7,7 @@ public class DragonBodyPart : MonoBehaviour
     [SerializeField] private float Length = 15f;
     [SerializeField] private int Resolution = 100;
     [SerializeField] private Sprite Head;
+    [SerializeField] GameObject DragonBodyParts;
     private SpriteRenderer SpriteRenderer;
     private Vector2[] Curve;
     private float[] Distances;
@@ -17,6 +18,7 @@ public class DragonBodyPart : MonoBehaviour
     private void Start()
     {
         if (Head == null) throw new Exception($"{nameof(Head)} was null in {nameof(DragonBodyPart)}");
+        if (DragonBodyParts == null) throw new Exception($"{nameof(DragonBodyParts)} was null in {nameof(DragonBodyPart)}");
         SpriteRenderer = GetComponent<SpriteRenderer>();
         Curve = new Vector2[Resolution];
         Distances = new float[Resolution];
@@ -37,7 +39,8 @@ public class DragonBodyPart : MonoBehaviour
     {
         enabled = true;
         SpriteRenderer.sprite = Head;
-        SpriteRenderer.flipX= false;
+        SpriteRenderer.flipX = false;
+        DragonBodyParts.SetActive(true);
     }
     private float CalcCurveDist()
     {

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D),typeof(Inventory))]
 public class DragonMovement : MonoBehaviour
@@ -17,11 +16,6 @@ public class DragonMovement : MonoBehaviour
     private void OnMorphToDragon()
     {
         enabled = true;
-    }
-    private void Update()
-    {
-        
-
     }
     private void FixedUpdate()
     {

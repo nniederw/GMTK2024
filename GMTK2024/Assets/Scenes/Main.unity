@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PositionInCurve: 7
-  DragonBodyPart: {fileID: 377760438}
+  DragonBodyPart: {fileID: 7314600739430673301}
 --- !u!212 &4243113
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2012,6 +2012,7 @@ MonoBehaviour:
   Length: 15
   Resolution: 100
   Head: {fileID: 0}
+  DragonBodyParts: {fileID: 0}
 --- !u!1001 &390582571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2886,7 +2887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PositionInCurve: 13.5
-  DragonBodyPart: {fileID: 377760438}
+  DragonBodyPart: {fileID: 7314600739430673301}
 --- !u!212 &661272027
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3539,7 +3540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PositionInCurve: 4
-  DragonBodyPart: {fileID: 377760438}
+  DragonBodyPart: {fileID: 7314600739430673301}
 --- !u!50 &782066091
 Rigidbody2D:
   serializedVersion: 4
@@ -3693,7 +3694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PositionInCurve: 1
-  DragonBodyPart: {fileID: 377760438}
+  DragonBodyPart: {fileID: 7314600739430673301}
 --- !u!212 &848435391
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4662,7 +4663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PositionInCurve: 12
-  DragonBodyPart: {fileID: 377760438}
+  DragonBodyPart: {fileID: 7314600739430673301}
 --- !u!212 &1019522885
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5981,7 +5982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PositionInCurve: 2.5
-  DragonBodyPart: {fileID: 377760438}
+  DragonBodyPart: {fileID: 7314600739430673301}
 --- !u!50 &1541706883
 Rigidbody2D:
   serializedVersion: 4
@@ -6362,7 +6363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PositionInCurve: 9
-  DragonBodyPart: {fileID: 377760438}
+  DragonBodyPart: {fileID: 7314600739430673301}
 --- !u!212 &1595213939
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7003,7 +7004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PositionInCurve: 5.5
-  DragonBodyPart: {fileID: 377760438}
+  DragonBodyPart: {fileID: 7314600739430673301}
 --- !u!50 &1920918299
 Rigidbody2D:
   serializedVersion: 4
@@ -7499,7 +7500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PositionInCurve: 10.5
-  DragonBodyPart: {fileID: 377760438}
+  DragonBodyPart: {fileID: 7314600739430673301}
 --- !u!212 &2060928308
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7777,7 +7778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PositionInCurve: 7.5
-  DragonBodyPart: {fileID: 377760438}
+  DragonBodyPart: {fileID: 7314600739430673301}
 --- !u!212 &2116624160
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8064,6 +8065,7 @@ MonoBehaviour:
   Length: 15
   Resolution: 100
   Head: {fileID: 21300000, guid: 9b5936ae6c291e24185647d649b611e6, type: 3}
+  DragonBodyParts: {fileID: 1971047525}
 --- !u!114 &7314600739430673302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8082,6 +8084,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 5339657118127842169}
+  - {fileID: 1971047526}
   - {fileID: 1237191596}
   - {fileID: 1137016154}
   - {fileID: 2100929263}
@@ -8102,4 +8105,3 @@ SceneRoots:
   - {fileID: 911341110}
   - {fileID: 1260089054}
   - {fileID: 196068471}
-  - {fileID: 1971047526}
